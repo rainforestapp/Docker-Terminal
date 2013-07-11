@@ -1,15 +1,32 @@
-<!DOCTYPE html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="javascripts/libs/jquery-2.0.3.js"></script>
-    <script src="javascripts/libs/jquery.websocket.js"></script>
-  </head>
-  <body>
+<!doctype html>
+<title>tty.js</title>
+<!--
+  tty.js
+  Copyright (c) 2012-2013, Christopher Jeffrey (MIT License)
+-->
+<style>
+  h1 {
+    margin-bottom: 20px;
+    font: 20px/1.5 sans-serif;
+  }
 
-    <script>
-      console.log('hello world');
-    </script>
+  .terminal {
+    float: left;
+    border: #000 solid 5px;
+    font-family: "DejaVu Sans Mono", "Liberation Mono", monospace;
+    font-size: 11px;
+    color: #f0f0f0;
+    background: #000;
+  }
 
-  </body>
-</html>
+  .reverse-video {
+    color: #000;
+    background: #f0f0f0;
+  }
+</style>
+<h1>tty.js</h1>
+<script src="vendor/term.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="docker_terminal.js"></script>
+
+<div data-docker-terminal="906d7ac84526"></div>
