@@ -25,24 +25,23 @@ $(document).ready ->
       console.log stringBuilder.length, stringBuilder
       console.log 'Logpointer is', logPointer
       if stringBuilder.join('') is ''
-        console.log "Log value"
-        console.log logPointer
-        console.log log[logPointer]
         $('#string-list').append "<li>#{log[logPointer]}</li>"
+        log.push log[logPointer]
+        logPointer = log.length
       else
         $('#string-list').append "<li>#{stringBuilder.join('')}</li>"
         log.push stringBuilder.join('')
-        logPointer = log.length - 1
+        logPointer = log.length
         stringBuilder = []
 
     else if e.keyCode is 38 and logPointer > 0
       logPointer -= 1
-      console.log log[logPointer]
+      updateInput log[logPointer]
       
     else if e.keyCode is 40 and logPointer < log.length
       logPointer += 1
-      console.log log[logPointer]
-      
+      updateInput log[logPointer]
+
 
   $(document).on 'keypress', (e) =>
     # if valid key

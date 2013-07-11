@@ -20,22 +20,21 @@
         console.log(stringBuilder.length, stringBuilder);
         console.log('Logpointer is', logPointer);
         if (stringBuilder.join('') === '') {
-          console.log("Log value");
-          console.log(logPointer);
-          console.log(log[logPointer]);
-          return $('#string-list').append("<li>" + log[logPointer] + "</li>");
+          $('#string-list').append("<li>" + log[logPointer] + "</li>");
+          log.push(log[logPointer]);
+          return logPointer = log.length;
         } else {
           $('#string-list').append("<li>" + (stringBuilder.join('')) + "</li>");
           log.push(stringBuilder.join(''));
-          logPointer = log.length - 1;
+          logPointer = log.length;
           return stringBuilder = [];
         }
       } else if (e.keyCode === 38 && logPointer > 0) {
         logPointer -= 1;
-        return console.log(log[logPointer]);
+        return updateInput(log[logPointer]);
       } else if (e.keyCode === 40 && logPointer < log.length) {
         logPointer += 1;
-        return console.log(log[logPointer]);
+        return updateInput(log[logPointer]);
       }
     });
     return $(document).on('keypress', function(e) {
