@@ -44,10 +44,8 @@ $(document).ready ->
       console.log log[logPointer]
       
 
-
   $(document).on 'keypress', (e) =>
     # if valid key
-    if e.keyCode >= 48 or e.keyCode <= 90
-      console.log 'valid!'
+    if 65 <= e.keyCode <= 122 or e.keyCode is 32
       stringBuilder.push String.fromCharCode(e.keyCode)
       updateInput stringBuilder.join('')

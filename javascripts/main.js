@@ -39,8 +39,8 @@
       }
     });
     return $(document).on('keypress', function(e) {
-      if (e.keyCode >= 48 || e.keyCode <= 90) {
-        console.log('valid!');
+      var _ref;
+      if ((65 <= (_ref = e.keyCode) && _ref <= 122) || e.keyCode === 32) {
         stringBuilder.push(String.fromCharCode(e.keyCode));
         return updateInput(stringBuilder.join(''));
       }
