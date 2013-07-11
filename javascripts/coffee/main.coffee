@@ -19,11 +19,12 @@ $(document).ready ->
       if stringBuilder.join('') is ''
         console.log log[logPointer]
         $('#string-list').append "<li>#{log[logPointer]}</li>"
+      $('#current-string').val('')
       $('#string-list').append "<li>#{stringBuilder.join('')}</li>"
       log.push stringBuilder
       stringBuilder = []
-      console.log log
 
+    # if valid key
     else if e.keyCode >= 48 or e.keyCode <= 90
       stringBuilder.push String.fromCharCode(e.keyCode)
 
@@ -33,4 +34,4 @@ $(document).ready ->
     else if e.keyCode is 40 and logPointer < log.length
       logPointer += 1
 
-
+    $('#current-string').val(stringBuilder.join(''))
