@@ -1,10 +1,12 @@
 window.docker = (function(docker) {
   docker.terminal = {
-    startTerminalForContainer: function(container) {
+    startTerminalForContainer: function(host, container) {
       var term = new Terminal();
       term.open();
 
-      var wsUri = "ws://storagelols:4243/v1.3/containers/" + 
+      var wsUri = "ws://" + 
+        host + 
+        "/v1.3/containers/" + 
         container + 
         "/attach/ws?logs=1&stderr=1&stdout=1&stream=1&stdin=1";
 
@@ -39,8 +41,9 @@ window.docker = (function(docker) {
 })(window.docker || {});
 
 $(function() {
-  $("[data-docker-terminal]").each(function(i, el) {
-    var container = $(el).data('docker-terminal');
-    docker.terminal.startTerminalForContainer(container);
+  $("[data-docker-terminal-container]").each(function(i, el) {
+    var container = $(el).data('docker-terminal-container');
+    var host = $(el).data('docker-terminal-host');
+    docker.terminal.startTerminalForContainer(host, container);
   });
 });
