@@ -18,6 +18,7 @@ $(document).ready ->
     else if e.keyCode is 13
       if stringBuilder.join('') is ''
         console.log log[logPointer]
+        $('#string-list').append "<li>#{log[logPointer]}</li>"
       $('#string-list').append "<li>#{stringBuilder.join('')}</li>"
       log.push stringBuilder
       stringBuilder = []
