@@ -2,10 +2,11 @@
 (function() {
 
   $(document).ready(function() {
-    var log, stringBuilder, updateInput,
+    var log, logPointer, stringBuilder, updateInput,
       _this = this;
     stringBuilder = [];
     log = [];
+    logPointer = 0;
     updateInput = function(val) {
       return $('#current-string').val(val);
     };
@@ -17,13 +18,23 @@
         return updateInput(stringBuilder.join(''));
       } else if (e.keyCode === 13) {
         updateInput('');
+        console.log(stringBuilder.length, stringBuilder);
+        if (stringBuilder.length === 0) {
+          console.log(log[logPointer]);
+          $('#string-list').append("<li>" + log[logPointer] + "</li>");
+        }
         $('#string-list').append("<li>" + (stringBuilder.join('')) + "</li>");
         log.push(stringBuilder);
         return stringBuilder = [];
+      } else if (e.keyCode === 38 && logPointer > 0) {
+        return logPointer -= 1;
+      } else if (e.keyCode === 40 && logPointer < log.length) {
+        return logPointer += 1;
       }
     });
     return $(document).on('keypress', function(e) {
       if (e.keyCode >= 48 || e.keyCode <= 90) {
+        console.log('valid!');
         stringBuilder.push(String.fromCharCode(e.keyCode));
         return updateInput(stringBuilder.join(''));
       }

@@ -3,6 +3,7 @@ $(document).ready ->
   # create string holder
   stringBuilder = []
   log = []
+  logPointer = 0
 
   # update input
   updateInput = (val) =>
@@ -21,12 +22,25 @@ $(document).ready ->
     # if return
     else if e.keyCode is 13
       updateInput ''
+      console.log stringBuilder.length, stringBuilder
+      if stringBuilder.length is 0
+        console.log log[logPointer]
+        $('#string-list').append "<li>#{log[logPointer]}</li>"
+
       $('#string-list').append "<li>#{stringBuilder.join('')}</li>"
       log.push stringBuilder
       stringBuilder = []
 
+    else if e.keyCode is 38 and logPointer > 0
+      logPointer -= 1
+
+    else if e.keyCode is 40 and logPointer < log.length
+      logPointer += 1
+
+
   $(document).on 'keypress', (e) =>
     # if valid key
     if e.keyCode >= 48 or e.keyCode <= 90
+      console.log 'valid!'
       stringBuilder.push String.fromCharCode(e.keyCode)
       updateInput stringBuilder.join('')
