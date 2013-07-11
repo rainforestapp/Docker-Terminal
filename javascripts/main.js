@@ -1,17 +1,19 @@
 (function() {
 
   $(document).ready(function() {
-    var log, logPointer, stringBuilder, updateInput,
+    var log, logPointer, stringBuilder, t, updateInput,
       _this = this;
     stringBuilder = [];
     log = [];
     logPointer = 0;
+    t = new Terminal();
     updateInput = function(val) {
       return $('#current-string').val(val);
     };
     $('body').append('<ul id="string-list"></ul>');
     $('body').append('<input type="text" id="current-string">');
     $(document).on('keydown', function(e) {
+      console.log(t.write("Hello world"));
       if (e.keyCode === 8) {
         stringBuilder.pop();
         return updateInput(stringBuilder.join(''));

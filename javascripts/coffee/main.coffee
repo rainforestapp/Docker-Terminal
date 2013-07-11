@@ -1,9 +1,12 @@
+
 $(document).ready ->
 
   # create string holder
   stringBuilder = []
   log = []
   logPointer = 0
+
+  t = new Terminal()
 
   # update input
   updateInput = (val) =>
@@ -14,6 +17,7 @@ $(document).ready ->
   $('body').append '<input type="text" id="current-string">'
 
   $(document).on 'keydown', (e) =>
+    console.log t.write("Hello world")
     # if backspace
     if e.keyCode is 8
       stringBuilder.pop()
