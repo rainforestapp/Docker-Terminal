@@ -12,12 +12,13 @@
       if (e.keyCode === 8) {
         return stringBuilder.splice(stringBuilder.length, -1);
       } else if (e.keyCode === 13) {
+        $('#current-string').val('');
         $('#string-list').append("<li>" + (stringBuilder.join('')) + "</li>");
         log.push(stringBuilder);
-        stringBuilder = [];
-        return console.log(log);
+        return stringBuilder = [];
       } else if (e.keyCode >= 48 || e.keyCode <= 90) {
-        return stringBuilder.push(String.fromCharCode(e.keyCode));
+        stringBuilder.push(String.fromCharCode(e.keyCode));
+        return $('#current-string').val(stringBuilder.join(''));
       }
     });
   });

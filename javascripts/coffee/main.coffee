@@ -15,10 +15,12 @@ $(document).ready ->
 
     # if return
     else if e.keyCode is 13
+      $('#current-string').val('')
       $('#string-list').append "<li>#{stringBuilder.join('')}</li>"
       log.push stringBuilder
       stringBuilder = []
-      console.log log
 
+    # if valid key
     else if e.keyCode >= 48 or e.keyCode <= 90
       stringBuilder.push String.fromCharCode(e.keyCode)
+      $('#current-string').val(stringBuilder.join(''))
