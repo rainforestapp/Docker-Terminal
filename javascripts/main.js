@@ -2,23 +2,30 @@
 (function() {
 
   $(document).ready(function() {
-    var log, stringBuilder,
+    var log, stringBuilder, updateInput,
       _this = this;
     stringBuilder = [];
     log = [];
+    updateInput = function(val) {
+      return $('#current-string').val(val);
+    };
     $('body').append('<ul id="string-list"></ul>');
     $('body').append('<input type="text" id="current-string">');
-    return $(document).on('keypress', function(e) {
+    $(document).on('keydown', function(e) {
       if (e.keyCode === 8) {
-        return stringBuilder.splice(stringBuilder.length, -1);
+        stringBuilder.pop();
+        return updateInput(stringBuilder.join(''));
       } else if (e.keyCode === 13) {
-        $('#current-string').val('');
+        updateInput('');
         $('#string-list').append("<li>" + (stringBuilder.join('')) + "</li>");
         log.push(stringBuilder);
         return stringBuilder = [];
-      } else if (e.keyCode >= 48 || e.keyCode <= 90) {
+      }
+    });
+    return $(document).on('keypress', function(e) {
+      if (e.keyCode >= 48 || e.keyCode <= 90) {
         stringBuilder.push(String.fromCharCode(e.keyCode));
-        return $('#current-string').val(stringBuilder.join(''));
+        return updateInput(stringBuilder.join(''));
       }
     });
   });

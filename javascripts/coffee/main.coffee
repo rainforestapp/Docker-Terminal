@@ -4,23 +4,29 @@ $(document).ready ->
   stringBuilder = []
   log = []
 
+  # update input
+  updateInput = (val) =>
+    $('#current-string').val val
+
   # create DOM structure
   $('body').append '<ul id="string-list"></ul>'
   $('body').append '<input type="text" id="current-string">'
 
-  $(document).on 'keypress', (e) =>
+  $(document).on 'keydown', (e) =>
     # if backspace
     if e.keyCode is 8
-      stringBuilder.splice(stringBuilder.length, -1)
+      stringBuilder.pop()
+      updateInput stringBuilder.join('')
 
     # if return
     else if e.keyCode is 13
-      $('#current-string').val('')
+      updateInput ''
       $('#string-list').append "<li>#{stringBuilder.join('')}</li>"
       log.push stringBuilder
       stringBuilder = []
 
+  $(document).on 'keypress', (e) =>
     # if valid key
-    else if e.keyCode >= 48 or e.keyCode <= 90
+    if e.keyCode >= 48 or e.keyCode <= 90
       stringBuilder.push String.fromCharCode(e.keyCode)
-      $('#current-string').val(stringBuilder.join(''))
+      updateInput stringBuilder.join('')
