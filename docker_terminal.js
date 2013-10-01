@@ -6,7 +6,7 @@ window.docker = (function(docker) {
 
       var wsUri = "ws://" + 
         host + 
-        "/v1.3/containers/" + 
+        "/v1.5/containers/" + 
         container + 
         "/attach/ws?logs=1&stderr=1&stdout=1&stream=1&stdin=1";
 
